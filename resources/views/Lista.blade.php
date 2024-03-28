@@ -13,6 +13,26 @@
     font-family: "Roboto", sans-serif;
     font-weight: 100;
     font-style: normal;
+    background-color: #343a40; /* Cor de fundo escura */
+      color: #fff; /* Cor do texto branca */
+    }
+    .contact-item {
+      margin-bottom: 10px;
+    }
+   
+    /* Estilo para os links */
+    .action-links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 5px; /* Espaçamento superior */
+    }
+
+    /* Estilo para separador */
+    .separator {
+      border-right: 1px solid #ccc;
+      height: 100%;
+      margin: 0 10px;
     }
 
     ul {
@@ -20,24 +40,43 @@
     padding: 0;
     margin: 0;
     }
+    
+    .action-links .btn {
+      margin-right: 5px;
+    }
     </style>
 
     <title>Lista</title>
 </head>
-<header>
-    <h2>Lista</h2>
-</header>
+
 <body>
-    <div>
-        <a href="{{route('logins.create')}}">Criar</a>
-        <ul>
+    <div class="container">
+        <div class="text-center">
+            <h2>Lista de Contatos :</h2>
+        <a href="{{route('logins.create')}}" class="btn btn-primary">Criar</a>
+        </div>
+        <ul class="list-group ">
             @foreach ($candidatos as $candidato)
-                <li> {{$candidato -> name}}</li>
-                <li> {{$candidato -> telefone}}</li>
-                <a href="{{route('logins.edit', ['candidato' => $candidato->id])
-                }}">Editar</a> | <a href="{{route('logins.show', ['candidato' => $candidato->id])}}">Deletar</a> | <a href="{{route('logins.show', ['candidato' => $candidato->id])}}">Mostrar</a>
+                <li class="list-group-item contact-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <div><strong>Nome : </strong><span class="contact-name"> {{$candidato -> name}}</span></div> 
+                        <div class="separator"></div> 
+                        <div> <strong> Telefone:</strong><span class="contact-telefone"> {{$candidato -> telefone}}</span></div> 
+                    </div>
+                    <div class="action-links">
+                        <a href="{{route('logins.edit', ['candidato' => $candidato->id])
+                        }}" class="btn btn-primary">Editar</a>
+                        <div class="separator"></div>
+                        <a href="{{route('logins.show', ['candidato' => $candidato->id])}}" class="btn btn-danger">Deletar</a> 
+                        <div class="separator"></div>
+                        <a href="{{route('logins.show', ['candidato' => $candidato->id])}}"class="btn btn-secondary">Mostrar</a>
+                    </div>
+                </li>
             @endforeach
         </ul>
     </div>
+    <script>
+        
+      </script>
 </body>
 </html>
